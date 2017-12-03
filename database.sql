@@ -1,4 +1,3 @@
-
 -- Adminer 4.3.1 MySQL dump
 
 SET NAMES utf8;
@@ -22,13 +21,19 @@ DROP TABLE IF EXISTS `requests`;
 CREATE TABLE `requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `book_id` int(11) NOT NULL,
+  `responder_id` int(11) NOT NULL,
+  `requester_id` int(11) NOT NULL,
   `request_date` datetime NOT NULL,
   `response_data` datetime NOT NULL,
   `return_history` datetime NOT NULL,
   `status` varchar(7) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`),
   KEY `book_id` (`book_id`),
-  CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
+  KEY `responder_id` (`responder_id`),
+  KEY `requester_id` (`requester_id`),
+  CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
+  CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`responder_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `requests_ibfk_3` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -65,4 +70,4 @@ CREATE TABLE `user_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2017-12-03 08:56:08
+-- 2017-12-03 09:44:52
