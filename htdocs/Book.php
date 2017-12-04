@@ -31,6 +31,27 @@ class Book {
     
     public function validate_data($ISBN,$title,$author,$publisher,$publication_year){
         
+
+        //$ISBN
+        //    if(count (R::getAll( "SELECT * FROM users where phonenumber_number='$phonenumber_number'"  ))==1 )
+    
+        $ISBN=trim(htmlspecialchars($ISBN));
+        $title=trim(htmlspecialchars($title));
+        $publisher=trim(htmlspecialchars($publisher));
+      
+        
+        $massage="";
+        
+        if(strlen($ISBN)>=11) 
+            $massage."ISBAN number should be 10 digit <br>";
+        if(strlen($title)>=60) 
+            $massage."title lenght should be less then 60 digit <br>";
+        if(strlen($publisher)>=60) 
+            
+        if($publication_year<=0) 
+        
+        // $publication_year !=0;
+        
         
     }
     
