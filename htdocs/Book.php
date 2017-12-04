@@ -6,7 +6,9 @@ require_once ('../lib/RedBeanPHP/rb.php');
 
 class Book {
    
+ 
     
+
     
     public function __construct()
     {
@@ -21,10 +23,14 @@ class Book {
     
     
     public function save ($ISBN,$title,$author,$publisher,$publication_year){
-        // how to save data 
+               
+        return   R::exec("INSERT INTO `unit_status` (`ISBN`, `title`,`author`,`publisher`,`publication_year`) VALUES ('$ISBN','$title','$author','$author','$publisher',$publication_year)");
+        
+        
     }
     
     public function validate_data($ISBN,$title,$author,$publisher,$publication_year){
+        
         
     }
     
@@ -67,7 +73,9 @@ class Book {
 
 
 
+$b= new Book();
 
+$b->save('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', '1997');
 
 
 
