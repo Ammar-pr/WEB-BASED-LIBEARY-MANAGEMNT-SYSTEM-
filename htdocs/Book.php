@@ -38,8 +38,10 @@ class Book {
         $ISBN=trim(htmlspecialchars($ISBN));
         $title=trim(htmlspecialchars($title));
         $publisher=trim(htmlspecialchars($publisher));
-      
-        echo strlen($title);
+        $author=trim(htmlspecialchars($author));
+        
+        
+         echo strlen($publisher);
         
         $massage="";
         
@@ -53,18 +55,43 @@ class Book {
           
             $massage.="ISBAN number should be 10 digit <br>";
         }
+        
+        if(count (R::getAll( "SELECT * FROM books where ISBN='$ISBN'"  ))==1 ){
+            $massage.="ISBN is exist in the database..!  <br>";
+        }
+        
+        
             if(strlen($title)<=0)
             {
-                $massage."title is empty <br>";
+                $massage.="title is empty <br>";
             }
                 
         if(strlen($title)>60) {
-            $massage.="title lenght should be less then 60  <br>";}
+            $massage.="title length should be less then 60  <br>";
         
+        }
+        
+            if(count (R::getAll( "SELECT * FROM books where title='$title'"  ))==1 ){
+                echo "111";
+                $massage.="title is exist in the database..!  <br>";
+            }
+            
+            if(strlen($author)<=0)
+            {
+                $massage.="author is empty <br>";
+            }
+            
+            if(strlen($author)>60) {
+                $massage.="author name  should be less then 60  <br>";
+            }
+                
+            
+            
+            
             if(strlen($publisher)<=0){
                 $massage.="publisher is empty <br>";}
             if(strlen($publisher)>=60) {
-            $massage."publisher lenght should be less then 60  <br>";}
+            $massage.="publisher length should be less then 60  <br>";}
         if($publication_year<=0) 
         {
             $massage.="publication_year is empty !   <br>";}
@@ -121,7 +148,7 @@ $b= new Book();
 
 //$test_var=$b->save('1-33-44-55a1111111111', '', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
-$b->validate_data('1-33-44-55q', ' Freedom of the City of Londonmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
+$b->validate_data('1-33-44-55','Freedom of the City of London', '', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0);
 
 
 ?>
