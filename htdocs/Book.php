@@ -24,7 +24,7 @@ class Book {
     
     public function save ($ISBN,$title,$author,$publisher,$publication_year){
                
-        return   R::exec("INSERT INTO `unit_status` (`ISBN`, `title`,`author`,`publisher`,`publication_year`) VALUES ('$ISBN','$title','$author','$author','$publisher',$publication_year)");
+        return   R::exec("INSERT INTO `books`( `ISBN`, `title`, `author`, `publisher`, `publication_year`) VALUES ('1-39-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997)");
         
         
     }
@@ -58,7 +58,7 @@ class Book {
     }
     
  
-    public function print ($book_refrence) {
+    public function print_data ($book_refrence) {
         
     }
     
@@ -75,8 +75,8 @@ class Book {
 
 $b= new Book();
 
-$b->save('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', '1997');
+$test_var=$b->save('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
-
+echo count($test_var);
 
 ?>
