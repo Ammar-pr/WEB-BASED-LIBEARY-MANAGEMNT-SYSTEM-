@@ -5,8 +5,7 @@ require_once ('../lib/RedBeanPHP/rb.php');
 
 
 class Book {
-    #rdsf
-    echo 2ll;
+   
     
     
     public function __construct()
