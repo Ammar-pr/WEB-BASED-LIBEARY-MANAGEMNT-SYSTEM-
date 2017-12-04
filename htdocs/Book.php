@@ -42,16 +42,34 @@ class Book {
         
         $massage="";
         
+        if(strlen($ISBN)<=0)
+            $massage."ISBAN number is empty ! <br>";
+            
+        
         if(strlen($ISBN)>=11) 
             $massage."ISBAN number should be 10 digit <br>";
-        if(strlen($title)>=60) 
-            $massage."title lenght should be less then 60 digit <br>";
-        if(strlen($publisher)>=60) 
-            
+        
+            if(strlen($title)<=0)
+                $massage."title is empty <br>";
+                
+                
+        if(strlen($title)<=60) 
+            $massage."title lenght should be less then 60  <br>";
+        
+            if(strlen($publisher)<=0)
+                $massage."publisher is empty <br>";
+            if(strlen($publisher)>=60) 
+            $massage."publisher lenght should be less then 60  <br>";
         if($publication_year<=0) 
         
-        // $publication_year !=0;
+            $massage."publication_year is empty !   <br>";
         
+            
+            if(strlen($massage)>0)
+                
+                echo $massage;
+                
+                return $massage;
         
     }
     
@@ -96,8 +114,9 @@ class Book {
 
 $b= new Book();
 
-$test_var=$b->save('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
+//$test_var=$b->save('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
-echo count($test_var);
+$b->validate_data('1-33-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
+
 
 ?>
