@@ -113,22 +113,64 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('title minimum length is four , less cannot be accepted  <br>author minimum length is four , less cannot be accepted  <br>publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>', $return_values_scenario_Nineteen);
 
 
-        $return_values_scenario_Twenty=$book_test->validate_data("978-3-16-1", "tel", "", "sal", 0);
+        $return_values_scenario_Twenty = $book_test->validate_data("978-3-16-1", "tel", "", "sal", 0);
+
+        $this->assertEquals('title minimum length is four , less cannot be accepted  <br>author minimum length is four , less cannot be accepted  <br>publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>', $return_values_scenario_Twenty);
+
+        $return_values_scenario_Twenty_one = $book_test->validate_data("978-3-16-1", "title is title", "", "", 0);
+
+        $this->assertEquals('author minimum length is four , less cannot be accepted  <br>publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>', $return_values_scenario_Twenty_one);
+
+        $return_values_scenario_Twenty_two = $book_test->validate_data("978-3-16-1", "title is title", "", "publisher is publisher", 0);
+
+        $this->assertEquals('author minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>', $return_values_scenario_Twenty_two);
+
+        $return_values_scenario_Twenty_three = $book_test->validate_data("978-3-16-1", "title is title", "author is author ", "", 0);
+
+        $this->assertEquals('publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>', $return_values_scenario_Twenty_three);
+
+        $return_values_scenario_Twenty_four = $book_test->validate_data("978-3-16-1", "title is title", "author is author ", "publisher is publisher", 0);
+
+        $this->assertEquals('publication_year is empty !   <br>', $return_values_scenario_Twenty_four);
+
+
+
+        $return_values_scenario_Twenty_five = $book_test->validate_data("", "title is title", "author is author ", "publisher is publisher", 0);
+
+        $this->assertEquals('ISBAN number is empty ! <br>publication_year is empty !   <br>', $return_values_scenario_Twenty_five);
+
+        $return_values_scenario_Twenty_six = $book_test->validate_data("978-3-16-1", "", "author is author ", "publisher is publisher",2016);
+
+        $this->assertEquals('title minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Twenty_six);
+ // author cases start from here J. K. Rowling
         
-        $this->assertEquals('title minimum length is four , less cannot be accepted  <br>author minimum length is four , less cannot be accepted  <br>publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>',$return_values_scenario_Twenty);
+               $return_values_scenario_Twenty_seven = $book_test->validate_data("978-3-16-1", "title is hary potter", " J. K. Rowling ", "publisher is publisher",2016);
 
-        $return_values_scenario_Twenty_one=$book_test->validate_data("978-3-16-1", "title is title", "", "", 0);
+        $this->assertEquals('', $return_values_scenario_Twenty_seven);
+ 
+               $return_values_scenario_Twenty_eight = $book_test->validate_data("", "title is hary potter", " J. K. Rowling ", "publisher is publisher",2016);
+
+        $this->assertEquals('ISBAN number is empty ! <br>', $return_values_scenario_Twenty_eight);
         
-        $this->assertEquals('author minimum length is four , less cannot be accepted  <br>publisher minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>',$return_values_scenario_Twenty_one);
+         $return_values_scenario_Twenty_nine = $book_test->validate_data("", "", " J. K. Rowling ", "publisher is publisher",2016);
 
-        $return_values_scenario_Twenty_two=$book_test->validate_data("978-3-16-1", "title is title", "", "publisher is publisher", 0);
+        $this->assertEquals('ISBAN number is empty ! <br>title minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Twenty_nine);
+
+                 $return_values_scenario_Thirty = $book_test->validate_data("978-3-16-1", "", " J. K. Rowling ", "publisher is publisher",2016);
+
+        $this->assertEquals('title minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Thirty);
+
         
-        $this->assertEquals('author minimum length is four , less cannot be accepted  <br>publication_year is empty !   <br>',$return_values_scenario_Twenty_two);
+        
+          $return_values_scenario_Thirty_one = $book_test->validate_data("978-3-16-1", "title is something you should see it first", " J. K. Rowling ", "",2016);
 
+        $this->assertEquals('publisher minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Thirty_one);
+        
+          $return_values_scenario_Thirty_two = $book_test->validate_data("978-3-16-1", "title is something you should see it first", " J. K. Rowling ", "",2016);
 
-
-
-
+        $this->assertEquals('publisher minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Thirty_two);
+        
+        
 // phpunit Book_test.php
     }
 
