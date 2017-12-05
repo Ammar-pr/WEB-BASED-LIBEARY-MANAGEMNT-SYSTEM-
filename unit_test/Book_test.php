@@ -77,6 +77,15 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
         $return_values_scenario_Thirteen=$book_test->validate_data("978-3-16-1", "good time", "mark", "salm", 1419);
         
         $this->assertEquals('',$return_values_scenario_Thirteen);
+        
+        
+        
+        
+          $return_values_scenario_Fourteen=$book_test->validate_data("978-3-16-1", "", "mark", "salm", 1419);
+        
+        $this->assertEquals('title is empty <br>',$return_values_scenario_Fourteen);
+        
+        
     }
 
 }
