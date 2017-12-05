@@ -41,7 +41,7 @@ class Book {
         $author=trim(htmlspecialchars($author));
         
         
-         echo strlen($publisher);
+       
         
         $massage="";
         
@@ -52,7 +52,7 @@ class Book {
         
         if(strlen($ISBN)>=11) 
         {
-          
+          echo "lenght".strlen($ISBN);
             $massage.="ISBAN number should be 10 digit <br>";
         }
         
