@@ -11,7 +11,7 @@ require_once ('../htdocs/Book.php');
  */
 final class Book_test extends \PHPUnit_Framework_TestCase {
 
-   /* public function test_validate_data() {
+    public function test_validate_data() {
         // phpunit Book_test.php
         $book_test = new Book();
         $return_values_scenario_one = $book_test->validate_data('', "title", "author", "publisher", 1999);
@@ -175,7 +175,7 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
 
 // phpunit Book_test.php
     }
-*/
+
 
     public function test_save_book_data(){
 
@@ -189,7 +189,6 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
      $publication_year=1997;
        $book=new Book();
         $saved = R::getAll("SELECT * FROM books where ISBN='$ISBN'  and title='$title' and author='$author'  and publisher='$publisher' and publication_year=".$publication_year );
-       // echo $saved['id'];
 
              foreach ($saved as $elm) {
                echo "id is". $id = $elm['id'];
@@ -199,7 +198,6 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
 
             // take isbn and delete the object ..
         $var= R::exec("DELETE FROM `books` WHERE ISBN='$ISBN'" );
-        echo "var".$var;
          if($var){
 
 
@@ -237,6 +235,44 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
     }
 // phpunit Book_test.php
 
+    
+    
+    public function test_update(){
+ 
+      $ISBN="1-65-99-14";
+     $title="The Cuckoo's Calling";
+     $author="J. K. Rowling";
+     $publisher="pseudonym Robert Galbraith";
+     $publication_year=1997;
+     $book= new Book ();
+     $id=0;
+        
+     $update_data = R::getAll("SELECT * FROM books where ISBN='$ISBN'  and title='$title' and author='$author'  and publisher='$publisher' and publication_year=".$publication_year );
+     
+            if($update_data)
+            {
+                foreach ($update_data as $required_data){
+                    $id=$required_data['id'];
+                }
+               
+                if(id>0)
+                {
+                    $book->update ('1-67-01-82"','Harry Potter and the Goblet of Fire','J. K. Rowling','pseudonym Robert Galbraith',1925,$id);
+                    
+                    echo "here is the update ,for the first stage ..";
+                    
+                    // after testing return the same object as it was in the data base 
+                }
+             // do the update and check if it  is update or not .. 
+                
+            }else {
+            $num=   $book->save($ISBN, $title, $author, $publisher, $publication_year);
+
+            if($num){
+              $this->test_update();  
+            }
+            }
+    }
 }
 
 
