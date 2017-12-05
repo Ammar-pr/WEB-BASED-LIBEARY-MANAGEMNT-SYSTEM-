@@ -166,9 +166,9 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals('publisher minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Thirty_one);
         
-          $return_values_scenario_Thirty_two = $book_test->validate_data("978-3-16-1", "title is something you should see it first", " J. K. Rowling ", "",2016);
+          $return_values_scenario_Thirty_two = $book_test->validate_data("978-3-16-1", "title is something you should see it first", " J. K. Rowling ", "publisher is nora",0);
 
-        $this->assertEquals('publisher minimum length is four , less cannot be accepted  <br>', $return_values_scenario_Thirty_two);
+        $this->assertEquals('publication_year is empty !   <br>', $return_values_scenario_Thirty_two);
         
         
 // phpunit Book_test.php
