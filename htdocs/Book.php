@@ -113,7 +113,7 @@ class Book {
     
     public function update ($ISBN,$title,$author,$publisher,$publication_year,$id){
        /* the data  checking by functin called validate_data in the production */
-        return R::exec(" UPDATE `books` SET `ISBN` ='$ISBN', `title` = '$title' ,`author` ='$author', `publisher` = '$publisher', `publication_year` =$publication_year  WHERE `books`.`id` =" .$id);
+        return R::exec(" UPDATE `Books` SET `ISBN` ='$ISBN', `title` = '$title' ,`author`='$author', `publisher`='$publisher', `publication_year` =$publication_year  WHERE `Books`.`id` =" .$id);
 
     }
     

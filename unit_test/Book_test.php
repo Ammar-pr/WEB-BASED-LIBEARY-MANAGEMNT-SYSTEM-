@@ -177,7 +177,7 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function test_save_book_data(){
+  /*  public function test_save_book_data(){
 
         // save new object of the object allrady in the database delete it and make a new one .. and test if is save or not
  $expected = array('.');
@@ -235,32 +235,60 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
     }
 // phpunit Book_test.php
 
-    
+    */
     
     public function test_update(){
  
-      $ISBN="1-65-99-14";
-     $title="The Cuckoo's Calling";
+     $ISBN="1-65-99-14";
+     $title="The Cuckoos Calling";
      $author="J. K. Rowling";
      $publisher="pseudonym Robert Galbraith";
      $publication_year=1997;
      $book= new Book ();
      $id=0;
+     $expected= array("");
+     $actul=array("");
         
-     $update_data = R::getAll("SELECT * FROM books where ISBN='$ISBN'  and title='$title' and author='$author'  and publisher='$publisher' and publication_year=".$publication_year );
-     
+ $update_data = R::getAll("SELECT * FROM books where ISBN='$ISBN'  and title='$title' and author='$author'  and publisher='$publisher' and publication_year=".$publication_year );
+
             if($update_data)
             {
                 foreach ($update_data as $required_data){
                     $id=$required_data['id'];
                 }
                
-                if(id>0)
+                if($id>0)
                 {
-                    $book->update ('1-67-01-82"','Harry Potter and the Goblet of Fire','J. K. Rowling','pseudonym Robert Galbraith',1925,$id);
-                    
-                    echo "here is the update ,for the first stage ..";
-                    
+                  $update_status=  $book->update ('1-67-01-82"','Harry Potter and the Goblet of Fire','J. K. Rowling','pseudonym Robert Galbraith',1925,$id);
+                   $expected=array('1-67-01-82','Harry Potter and the Goblet of Fire','J. K. Rowling','pseudonym Robert Galbraith',1925) ;
+                 // $actul=array($ISBN,$title,$author,$publisher,$publication_year) ;
+              
+               
+               
+               // $actul=  array('1-67-01-82"','Harry Potter and the Goblet of Fire','J. K. Rowling','pseudonym Robert Galbraith',1925) ;
+                  
+                  
+                  echo "here is the update ,for the first stage ..";
+                  $publication_year_update=1925;
+                  
+                    if($update_status){
+                        $update_data_stage_two = R::getAll("SELECT * FROM books where ISBN='1-67-01-82'  and title='Harry Potter and the Goblet of Fire' and author='J. K. Rowling'  and publisher='pseudonym Robert Galbraith'  and publication_year=".$publication_year_update );
+                        if($update_data_stage_two)
+                        {
+                            foreach($update_data_stage_two as $data){
+                                $actul=array($data['ISBN'],$data['title'], $data['author'],$data['publisher'],$data['publication_year']);}
+                        }
+                        
+                        // do somthing .. retrun the same data as befor but do testing first - ammar the code is not coppy 
+                        $book->update($ISBN,$title,$author,$publisher,$publication_year,$id);
+                        
+                        
+                        
+                        
+                        $this->assertEquals($expected,$actul);
+                        
+
+                    } 
                     // after testing return the same object as it was in the data base 
                 }
              // do the update and check if it  is update or not .. 
@@ -277,6 +305,6 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
 
 
 $test= new Book_test();
-$test->test_save_book_data();
+//$test->test_update();
 
 ?>
