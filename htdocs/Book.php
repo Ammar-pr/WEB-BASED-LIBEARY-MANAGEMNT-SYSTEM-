@@ -148,7 +148,7 @@ $b= new Book();
 
 //$test_var=$b->save('1-33-44-55a1111111111', '', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
-$b->validate_data('1-33-44-55','Freedom of the City of London', '', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0);
+//$b->validate_data('1-33-44-55','Freedom of the City of London', '', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0);
 
 
 ?>
