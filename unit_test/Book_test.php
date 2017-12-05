@@ -179,8 +179,8 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
         
         // save new object of the object allrady in the database delete it and make a new one .. and test if is save or not 
         
-        
-        
+     $book = new Book ();   
+     $book->fetchWith_title($title);   
         
     }
     

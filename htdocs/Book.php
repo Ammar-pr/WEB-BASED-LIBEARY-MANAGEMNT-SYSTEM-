@@ -121,11 +121,10 @@ class Book {
     }
      public function fetchWith_title($title)
     {
-        $book  = R::findOne( 'books', ' title = ? ', ['sFreedom of the City of London'] );
+        $book  = R::findOne( 'books', ' title = ? ', [$title] );
     if($book){
-          echo "not null null";
+          return $book->tite;
     }else {
-        echo "null";
         return null;
     }
     }
