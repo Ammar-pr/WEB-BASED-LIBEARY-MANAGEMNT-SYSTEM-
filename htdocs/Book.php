@@ -61,11 +61,11 @@ class Book {
         }
         
         
-            if(strlen($title)<=0)
+            if( strlen($title)<=3)
             {
-                $massage.="title is empty <br>";
+                $massage.="title minimum length is four , less cannot be accepted  <br>";
             }
-                
+              
         if(strlen($title)>60) {
             $massage.="title length should be less then 60  <br>";
         
@@ -76,11 +76,11 @@ class Book {
                 $massage.="title is exist in the database..!  <br>";
             }
             
-            if(strlen($author)<=0)
+            if(strlen($author)<=3)
             {
-                $massage.="author is empty <br>";
+                $massage.="author minimum length is four , less cannot be accepted  <br>";
             }
-            
+      
             if(strlen($author)>60) {
                 $massage.="author name  should be less then 60  <br>";
             }
@@ -88,8 +88,10 @@ class Book {
             
             
             
-            if(strlen($publisher)<=0){
-                $massage.="publisher is empty <br>";}
+            if(strlen($publisher)<=3){
+                $massage.="publisher minimum length is four , less cannot be accepted  <br>";}
+                
+  
             if(strlen($publisher)>=60) {
             $massage.="publisher length should be less then 60  <br>";}
         if($publication_year<=0) 
