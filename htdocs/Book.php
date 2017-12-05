@@ -5,8 +5,12 @@ require_once ('../lib/RedBeanPHP/rb.php');
 
 
 class Book {
-   
- 
+ // class data mempter  
+ protected $ISBN;
+ protected $title;
+ protected $author;
+ protected $publisher;
+ protected $publication_year;
     
 
     
@@ -24,7 +28,7 @@ class Book {
     
     public function save ($ISBN,$title,$author,$publisher,$publication_year){
                
-        return   R::exec("INSERT INTO `books`( `ISBN`, `title`, `author`, `publisher`, `publication_year`) VALUES ('1-39-44-55', ' Freedom of the City of London', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997)");
+        return   R::exec("INSERT INTO `books`( `ISBN`, `title`, `author`, `publisher`, `publication_year`) VALUES ('$ISBN', '$title', '$author', '$publisher', $publication_year)");
         
         
     }
@@ -115,19 +119,22 @@ class Book {
         
     }
     
-    public function delete($id)
+    public function delete_by_isbn($ISBN)
     {
+     return R::exec("DELETE FROM `books` WHERE ISBN =".$ISBN );
+
+    }
+
+    
+    
+    public function fetch_data_testing($ISBN,$title,$author,$publisher,$publication_year){
+       
+    $saved = R::getAll("SELECT * FROM books where `isban`='$ISBN'  and title=$title and author='$author' and publication_year="."$publication_year" );
+        
         
     }
-     public function fetchWith_title($title)
-    {
-        $book  = R::findOne( 'books', ' title = ? ', [$title] );
-    if($book){
-          return $book->tite;
-    }else {
-        return null;
-    }
-    }
+
+
     public function deleteAll()
     {
         
@@ -138,7 +145,10 @@ class Book {
         
     }
     
- 
+    
+  
+
+
     public function print_data ($book_refrence) {
         
     }
@@ -159,6 +169,8 @@ $b= new Book();
 //$test_var=$b->save('1-33-44-55a1111111111', '', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
 //$b->validate_data('1-33-44-55','Freedom of the City of London', '', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0);
-$var =$b->fetchWith_title("Freedom of the City of London");
-echo $var ;
+//$var =$b->fetchWith_title("Freedom of the City of London");
+//echo $var ;
+
+//$b->fetch_with_isbn();
 ?>

@@ -3,6 +3,8 @@
 require_once ('vendor/autoload.php');
 
 require_once ('../htdocs/Book.php');
+require_once ('../lib/RedBeanPHP/rb.php');
+
 
 /**
  * @covers Email
@@ -179,9 +181,46 @@ final class Book_test extends \PHPUnit_Framework_TestCase {
         
         // save new object of the object allrady in the database delete it and make a new one .. and test if is save or not 
         
-     $book = new Book ();   
-     $book->fetchWith_title($title);   
+     $ISBN="1-33-44-55"; 
+     $title="Freedom of the City of London";
+     $author="J. K. Rowling";
+     $publisher="pseudonym Robert Galbraith";
+     $publication_year=1997;
+       $book=new Book();
+        $saved = R::getAll("SELECT * FROM books where ISBN='$ISBN'  and title='$title' and author='$author'  and publisher='$publisher' and publication_year=".$publication_year );
+       // echo $saved['id'];
+        
+             foreach ($saved as $elm) {
+               echo "id is". $id = $elm['id'];
+            }
+        if(count($saved)>0){
+        
+           
+            // take isbn and delete the object ..
+        $var= R::exec("DELETE FROM `books` WHERE ISBN='$ISBN'" );
+        echo "var".$var;
+         if($var){
+
+             
+             $this->test_save_book_data();
+             
+        
+         }
+         
+        }else {
+         // store the object again and test it , using select get all , the line number 181 just in case the book data saved allredy ..
+        // INSERT INTO `books`(`id`, `ISBN`, `title`, `author`, `publisher`, `publication_year`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6]) 
+          $num=   $book->save($ISBN, $title, $author, $publisher, $publication_year);
+          echo $num;
+        }
+        
         
     }
     
 }
+
+
+$test= new Book_test();
+$test->test_save_book_data();
+
+?>
