@@ -119,7 +119,16 @@ class Book {
     {
         
     }
-    
+     public function fetchWith_title($title)
+    {
+        $book  = R::findOne( 'books', ' title = ? ', ['sFreedom of the City of London'] );
+    if($book){
+          echo "not null null";
+    }else {
+        echo "null";
+        return null;
+    }
+    }
     public function deleteAll()
     {
         
@@ -151,6 +160,6 @@ $b= new Book();
 //$test_var=$b->save('1-33-44-55a1111111111', '', 'J. K. Rowling', 'pseudonym Robert Galbraith', 1997);
 
 //$b->validate_data('1-33-44-55','Freedom of the City of London', '', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0);
-
-
+$var =$b->fetchWith_title("Freedom of the City of London");
+echo $var ;
 ?>
